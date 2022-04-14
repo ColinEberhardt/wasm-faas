@@ -1,0 +1,13 @@
+[package]
+name = "wasm-faas"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "3"
+anyhow = "1.0"
+wasmtime = "0.35.1"
+wasmtime-wasi = "0.35.2"
+wasi-common = "0.35.2"

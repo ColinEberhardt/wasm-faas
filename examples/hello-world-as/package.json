@@ -1,0 +1,13 @@
+{
+  "name": "hello-world-as",
+  "scripts": {
+    "build": "asc assembly/index.ts -b build/hello-world.wasm"
+  },
+  "author": "",
+  "devDependencies": {
+    "assemblyscript": "^0.19.23"
+  },
+  "dependencies": {
+    "as-wasi": "^0.4.6"
+  }
+}
