@@ -48,17 +48,10 @@ fn invoke_wasm_module(module_name: String, params: HashMap<String, String>)
 }
 
 #[get("/{module_name}")]
-async fn route(module_name: Path<String>, query: Query<HashMap<String, String>>)
+async fn handler(module_name: Path<String>, query: Query<HashMap<String, String>>)
     -> impl Responder {
-
     let wasm_module = format!("{}{}", module_name, ".wasm");  
-    let val = match invoke_wasm_module(wasm_module, query.into_inner()) {
-        Ok(v) => v,
-        Err(e) => {
-            panic!("{}", e);
-        }
-    };
-
+    let val = invoke_wasm_module(wasm_module, query.into_inner()).expect("invocation error");
     HttpResponse::Ok().body(val)
 }
 
@@ -66,7 +59,7 @@ async fn route(module_name: Path<String>, query: Query<HashMap<String, String>>)
 #[actix_web::main]
 async fn main() -> io::Result<()> {
     HttpServer::new(|| {
-            App::new().service(route)
+            App::new().service(handler)
         })
         .bind("127.0.0.1:8080")?
         .run()

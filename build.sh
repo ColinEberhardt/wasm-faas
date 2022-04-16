@@ -4,7 +4,7 @@ mkdir target
 rm /target/*
 
 # build wasm-faas
-(cd wasm-faas; cargo build)
+(cd wasm-faas; cargo build --release)
 cp wasm-faas/target/debug/wasm-faas ./target
 
 # build examples
